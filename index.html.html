@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | 金山 優輝</title>
+    <!-- Font Awesome for Icons (外部CDNを使用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ========================================= */
+        /* 0. 基本設定とCSS変数 */
+        /* ========================================= */
+        :root {
+            --primary-color: #007bff;     /* メインブルー */
+            --secondary-color: #6c757d;  /* セカンダリー（グレー） */
+            --accent-color: #28a745;     /* アクセント（グリーン） */
+            --text-dark: #343a40;        /* 濃いテキスト */
+            --text-light: #ffffff;       /* 薄いテキスト/白 */
+            --bg-light: #f8f9fa;         /* 薄い背景 */
+            --max-width: 1100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========================================= */
+        /* 1. ヘッダー */
+        /* ========================================= */
+        header {
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* ========================================= */
+        /* 2. ヒーロー/自己紹介セクション */
+        /* ========================================= */
+        #hero {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 5px;
+            font-weight: 900;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-icon {
+            font-size: 4rem;
+            color: var(--text-light);
+            border: 3px solid var(--text-light);
+            border-radius: 50%;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ========================================= */
+        /* 3. ガクチカセクション (About/Gakuchika) */
+        /* ========================================= */
+        #about {
+            background-color: var(--text-light);
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .gakuchika-block {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--bg-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .gakuchika-block h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .gakuchika-block h3 i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .gakuchika-block p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .gakuchika-block strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* 詳細な行動リスト */
+        .gakuchika-detail {
+            margin-top: 20px;
+            padding-left: 20px;
+            list-style: none;
+        }
+        .gakuchika-detail li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .gakuchika-detail li::before {
+            content: '✓';
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========================================= */
+        /* 4. スキルセクション (Placeholder) */
+        /* ========================================= */
+        #skills {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--text-light);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--primary-color);
+        }
+
+        .skill-card i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+        }
+
+
+        /* ========================================= */
+        /* 5. フッター */
+        /* ========================================= */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-light);
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        /* ========================================= */
+        /* 6. レスポンシブデザイン (768px以下で適用) */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0 10px;
+            }
+
+            nav ul {
+                margin-top: 10px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .gakuchika-block {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">My Portfolio</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">自己紹介</a></li>
+                    <li><a href="#skills">スキル</a></li>
+                    <li><a href="#contact">コンタクト</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーロー/自己紹介セクション -->
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-profile">
+                <!-- Font Awesomeのユーザーアイコン -->
+                <i class="fas fa-user-circle profile-icon"></i>
+            </div>
+            <h1>金山 優輝 (Kanayama Yuki)</h1>
+            <h2>日本大学理工学部 4年</h2>
+            <p>
+                「課題解決」と「チームへの貢献」を重視する情報系学生です。<br>
+                Web技術、特にフロントエンド領域での実装経験を積んでいます。
+            </p>
+        </div>
+    </section>
+
+    <!-- 学生時代に力を入れたこと（ガクチカ）セクション -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">学生時代に力を入れたこと (Gakuchika)</h2>
+            <div class="gakuchika-block">
+                <h3><i class="fas fa-handshake"></i>新人の早期離職を防いだメンター活動</h3>
+                <p>
+                    私が学生時代に力を入れたのは、サカイ引越センターでのアルバイト経験を通じて、**新人の早期離職という課題解決に貢献したこと**です。
+                </p>
+                <p>
+                    私が働く現場では、作業の難しさや不安から、新人が数回の勤務で辞めてしまう状況が常態化していました。この課題に対し、私は単なる作業指示者ではなく、新人の不安を取り除く**「メンター役」として行動**しました。
+                </p>
+
+                <h4>具体的な行動と成果</h4>
+                <ul class="gakuchika-detail">
+                    <li>
+                        非言語化されていた**「荷物運びのコツ」や「効率的な配置」を言語化し、マニュアルよりも丁寧かつわかりやすい説明**を実践しました。
+                    </li>
+                    <li>
+                        特に初日は不安を抱えやすいため、**「何でも聞いていい」という気軽に質問できる雰囲気づくり**を徹底しました。
+                    </li>
+                </ul>
+
+                <p style="margin-top: 20px; font-weight: 600;">
+                    その結果、私が指導を担当した新人は、**全員がモチベーションを保ち、途中で辞めることなくアルバイトを継続してくれました**。この経験から、相手の立場に立って考え、具体的な行動で課題を解決する力を培いました。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション (プレースホルダー) -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">スキル (Skills)</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h4>フロントエンド開発</h4>
+                    <p>HTML5, CSS3, JavaScript (ES6+)。モダンなWeb標準に基づき、レスポンシブなUI実装が可能です。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h4>プログラミング言語</h4>
+                    <p>Python（研究・データ処理）、C言語（基礎）、Java（オブジェクト指向の概念理解）。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h4>データベース/インフラ</h4>
+                    <p>MySQLの基礎的なCRUD操作、Linuxの基本コマンド操作、AWS/GCPの学習中。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-figma"></i>
+                    <h4>デザイン/ツール</h4>
+                    <p>Figmaを使用したワイヤーフレーム、プロトタイピング。Git/GitHubによるチーム開発の経験があります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="contact">
+        <div class="container">
+            <div style="margin-bottom: 10px;">
+                <a href="https://github.com/your-username" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:y.kanayama@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            &copy; 2025 金山 優輝 | My Portfolio
+        </div>
+    </footer>
+
+</body>
+</html>
